@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow">
+<title>Цар-Симеоновата градина — Иван Тотев</title>
+<link rel="stylesheet" href="../../assets/stil.css">
+</head>
+<body>
+<div class="lnav"><div class="wrap">
+  <span class="lg">ИВАН <span>ТОТЕВ</span></span><span class="sp"></span>
+  <a href="../../">Начало</a><a href="../../razkazi/">Разкази</a><a href="../../godini/">Годините</a><a href="../../vestnik/">Вестникът</a><a href="../../za-men/">За мен</a><a href="../../#letter">Смисълът</a>
+</div></div>
+<section class="page on" id="p-s_gradina">
+<div class="head wrap">
+  <div class="crumb"><a href="../../razkazi/">Начало</a> · <a href="../../razkazi/parkovete/">Парковете — зелените дробове на града</a></div>
+  <h1>Цар-Симеоновата градина</h1>
+  <p class="lede">Градината на Шевалас — първото цялостно обновяване от 1892 г. насам, по облика от 1936-а.</p>
+</div>
+<div class="wrap">
+  <div class="podbar"><div class="pl"></div><span class="pb-t">Подкаст · Цар-Симеоновата градина</span><div class="tr"></div><span class="pb-d">—:—</span></div>
+  
+  
+  <h2 class="sec">Хронология</h2>
+  <div class="chron"><div class="mon">1892</div>
+<div class="ev"><div class="evh" style="cursor:default">
+  <div class="evt"><p style="margin-top:0;font-size:15.5px">Люсиен Шевалас я строи за Първото българско изложение. „Министърът на цветята.“</p></div>
+</div></div><div class="mon">2013–2015</div>
+<div class="ev"><div class="evh" style="cursor:default">
+  <div class="evt"><p style="margin-top:0;font-size:15.5px">Проектът: 60 декара, нови алеи, първата поливна система в историята и, павилионът по образец от 1892, двете детски площадки.</p></div>
+</div></div><div class="mon">04.2015</div>
+<div class="ev"><div class="evh" style="cursor:default">
+  <div class="evt"><p style="margin-top:0;font-size:15.5px">Деметра на Дзоки — реставрираният оригинал се връща на фонтана.</p></div>
+</div></div><div class="mon">2019</div>
+<div class="ev"><div class="evh" style="cursor:default">
+  <div class="evt"><p style="margin-top:0;font-size:15.5px">Новият площад „Централен“ става продължение на градината.</p></div>
+</div></div></div>
+  <p style="margin-top:26px;font-family:Verdana,sans-serif;font-size:11.5px;color:#6d635a;letter-spacing:.06em">ГОДИНИТЕ НА ТЕМАТА &nbsp; <a class="ytag" href="../../godini/2013/">2013</a> <a class="ytag" href="../../godini/2014/">2014</a> <a class="ytag" href="../../godini/2015/">2015</a> <a class="ytag" href="../../godini/2019/">2019</a></p>
+  <div class="back"><a href="../../razkazi/parkovete/">← обратно в разказа</a><span><a href="../../razkazi/" style="font-size:13px">начало</a></span></div>
+</div>
+</section>
+
+<div class="lbx" id="lbx">
+  <div class="lbtop"><span id="lbn"></span><span class="x" onclick="lbc()">×</span></div>
+  <div class="lbmain">
+    <span class="lbar l" onclick="lbs(-1)">‹</span>
+    <img id="lbimg" src="" alt="">
+    <span class="lbar r" onclick="lbs(1)">›</span>
+  </div>
+  <div class="lbcap" id="lbcap"></div>
+</div>
+
+<script>var ALB={};
+var CA=0, CI=0, OPEN=null;
+function tg(a){
+  var g=document.getElementById('alb'+a), r=document.getElementById('arr'+a);
+  if(OPEN!==null && OPEN!==a){var og=document.getElementById('alb'+OPEN),orr=document.getElementById('arr'+OPEN);
+    if(og)og.classList.remove('on'); if(orr)orr.classList.remove('on');}
+  g.classList.toggle('on'); r.classList.toggle('on');
+  OPEN=g.classList.contains('on')?a:null;
+}
+function lb(a,i){CA=a;CI=i;var it=ALB[a][i];
+  document.getElementById('lbimg').src=MEDIA[it[0]];
+  document.getElementById('lbcap').textContent=it[1];
+  document.getElementById('lbn').textContent=(i+1)+' / '+ALB[a].length+' · албумът';
+  document.getElementById('lbx').classList.add('on');document.body.style.overflow='hidden';}
+function lbc(){document.getElementById('lbx').classList.remove('on');document.body.style.overflow='';}
+/* Лентата на сагата: стрелки + точки-индикатор */
+function sgm(el,d){var s=el.closest('.saga').querySelector('.sg-strip');
+  var w=s.querySelector('.sg-card').offsetWidth+12;s.scrollBy({left:d*w,behavior:'smooth'});}
+function sgd(s){var w=s.querySelector('.sg-card').offsetWidth+12;
+  var i=Math.round(s.scrollLeft/w);var ds=s.parentNode.querySelectorAll('.sg-dots i');
+  ds.forEach(function(e,j){e.className=(j===Math.min(i,ds.length-1))?'on':'';});}
+function txm(el){var p=el.previousElementSibling;p.classList.toggle('open');
+  el.textContent=p.classList.contains('open')?'свий ▴':'виж още ▾';}
+/* „виж още“ се показва САМО ако текстът реално не се събира в трите реда */
+function ckm(){document.querySelectorAll('.page.on .clmp').forEach(function(p){
+  var b=p.nextElementSibling;if(!b||!b.classList.contains('tmore'))return;
+  if(p.classList.contains('open')){b.style.display='';return;}
+  b.style.display=(p.scrollHeight>p.clientHeight+2)?'':'none';});}
+window.addEventListener('resize',ckm);
+function lbs(d){lb(CA,(CI+d+ALB[CA].length)%ALB[CA].length);}
+document.addEventListener('keydown',function(e){
+  if(!document.getElementById('lbx').classList.contains('on'))return;
+  if(e.key==='Escape')lbc(); if(e.key==='ArrowLeft')lbs(-1); if(e.key==='ArrowRight')lbs(1);});
+var _tx=null;
+document.getElementById('lbx').addEventListener('touchstart',function(e){_tx=e.touches[0].clientX;});
+document.getElementById('lbx').addEventListener('touchend',function(e){
+  if(_tx===null)return;var dx=e.changedTouches[0].clientX-_tx;_tx=null;
+  if(dx>50)lbs(-1);else if(dx<-50)lbs(1);});
+document.getElementById('lbx').addEventListener('click',function(e){if(e.target.id==='lbx'||e.target.classList.contains('lbmain'))lbc();});
+</script>
+<script>var MEDIA={};document.querySelectorAll("[data-m]").forEach(function(e){e.src=MEDIA[e.getAttribute("data-m")];});document.querySelectorAll("[data-bg]").forEach(function(e){e.style.backgroundImage="url("+MEDIA[e.getAttribute("data-bg")]+")";});ckm();</script>
+</body>
+</html>
