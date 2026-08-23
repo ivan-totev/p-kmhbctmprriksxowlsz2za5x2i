@@ -82,6 +82,7 @@
   </div>
   <div class="lbcap" id="lbcap"></div>
 </div>
+<div id="msv" onclick="msc()">свий ▴</div>
 
 <script>var ALB={"38": [["odA0", "Одеонът · 07.05.2012 · кадър 1"], ["odA1", "Одеонът · 07.05.2012 · кадър 2"], ["odA2", "Одеонът · 07.05.2012 · кадър 3"], ["odA3", "Одеонът · 07.05.2012 · кадър 4"], ["odA4", "Одеонът · 07.05.2012 · кадър 5"], ["odA5", "Одеонът · 07.05.2012 · кадър 6"]], "39": [["odB6", "Одеонът · 28.11.2012 · кадър 1"], ["odB0", "Одеонът · 28.11.2012 · кадър 2"], ["odB1", "Одеонът · 28.11.2012 · кадър 3"], ["odB2", "Одеонът · 28.11.2012 · кадър 4"], ["odB3", "Одеонът · 28.11.2012 · кадър 5"], ["odB4", "Одеонът · 28.11.2012 · кадър 6"], ["odB5", "Одеонът · 28.11.2012 · кадър 7"], ["odB7", "Одеонът · 28.11.2012 · кадър 8"]], "40": [["odH0", "Одеонът · 11.2015 · ВАС · кадър 1"], ["odH1", "Одеонът · 11.2015 · ВАС · кадър 2"], ["odH2", "Одеонът · 11.2015 · ВАС · кадър 3"], ["odH3", "Одеонът · 11.2015 · ВАС · кадър 4"], ["odH4", "Одеонът · 11.2015 · ВАС · кадър 5"], ["odH5", "Одеонът · 11.2015 · ВАС · кадър 6"], ["odH6", "Одеонът · 11.2015 · ВАС · кадър 7"], ["odH7", "Одеонът · 11.2015 · ВАС · кадър 8"], ["odH8", "Одеонът · 11.2015 · ВАС · кадър 9"]], "41": [["odC2", "Одеонът · 22.10.2014 · кадър 1"], ["odC0", "Одеонът · 22.10.2014 · кадър 2"], ["odC1", "Одеонът · 22.10.2014 · кадър 3"], ["odC3", "Одеонът · 22.10.2014 · кадър 4"], ["odC4", "Одеонът · 22.10.2014 · кадър 5"], ["odC5", "Одеонът · 22.10.2014 · кадър 6"], ["odC6", "Одеонът · 22.10.2014 · кадър 7"]], "42": [["odD7", "Одеонът · 15.04.2015 · кадър 1"], ["odD0", "Одеонът · 15.04.2015 · кадър 2"], ["odD1", "Одеонът · 15.04.2015 · кадър 3"], ["odD2", "Одеонът · 15.04.2015 · кадър 4"], ["odD3", "Одеонът · 15.04.2015 · кадър 5"], ["odD4", "Одеонът · 15.04.2015 · кадър 6"], ["odD5", "Одеонът · 15.04.2015 · кадър 7"], ["odD6", "Одеонът · 15.04.2015 · кадър 8"]], "43": [["odF0", "Одеонът · 05–09.2018 · кадър 1"], ["odF1", "Одеонът · 05–09.2018 · кадър 2"]], "44": [["odG0", "Одеонът · 17.12.2021 · кадър 1"], ["odG1", "Одеонът · 17.12.2021 · кадър 2"], ["odG2", "Одеонът · 17.12.2021 · кадър 3"], ["odG3", "Одеонът · 17.12.2021 · кадър 4"], ["odG4", "Одеонът · 17.12.2021 · кадър 5"]], "45": [["odE0", "Одеонът · ОДЕОНЪТ · И ДНЕС · кадър 1"], ["odE1", "Одеонът · ОДЕОНЪТ · И ДНЕС · кадър 2"], ["odE2", "Одеонът · ОДЕОНЪТ · И ДНЕС · кадър 3"], ["odE3", "Одеонът · ОДЕОНЪТ · И ДНЕС · кадър 4"], ["odE4", "Одеонът · ОДЕОНЪТ · И ДНЕС · кадър 5"], ["odE5", "Одеонът · ОДЕОНЪТ · И ДНЕС · кадър 6"], ["odE6", "Одеонът · ОДЕОНЪТ · И ДНЕС · кадър 7"], ["odE7", "Одеонът · ОДЕОНЪТ · И ДНЕС · кадър 8"], ["odE8", "Одеонът · ОДЕОНЪТ · И ДНЕС · кадър 9"]]};
 var CA=0, CI=0, OPEN=null;
@@ -105,12 +106,30 @@ function sgd(s){var w=s.querySelector('.sg-card').offsetWidth+12;
   var i=Math.round(s.scrollLeft/w);var ds=s.parentNode.querySelectorAll('.sg-dots i');
   ds.forEach(function(e,j){e.className=(j===Math.min(i,ds.length-1))?'on':'';});}
 function txm(el){var p=el.previousElementSibling;p.classList.toggle('open');
-  el.textContent=p.classList.contains('open')?'свий ▴':'виж още ▾';}
+  var op=p.classList.contains('open');
+  el.textContent=op?'свий ▴':'виж още ▾';
+  var ev=el.closest('.ev');if(ev)ev.classList.toggle('wide',op);
+  if(!op){var a=ev||p.parentNode;var r=a.getBoundingClientRect();
+    if(r.top<0){a.scrollIntoView({block:'start'});window.scrollBy(0,-64);}}
+  msu();}
+/* плаващият „свий“ на телефон: вижда се само на тесен екран и само при разгънат текст */
+function msu(){var b=document.getElementById('msv');if(!b)return;
+  b.style.display=(window.innerWidth<=700&&document.querySelector('.clmp.open'))?'block':'none';}
+function msc(){var os=[].slice.call(document.querySelectorAll('.clmp.open'));if(!os.length)return;
+  var t=null,vh=window.innerHeight;
+  os.forEach(function(p){var r=p.getBoundingClientRect();if(!t&&r.top<vh&&r.bottom>0)t=p;});
+  t=t||os[os.length-1];
+  var b=t.nextElementSibling;
+  if(b&&b.classList.contains('tmore'))txm(b);
+  else{t.classList.remove('open');var e=t.closest('.ev');if(e)e.classList.remove('wide');msu();}
+  var a=t.closest('.ev')||t.parentNode;a.scrollIntoView({block:'start'});window.scrollBy(0,-64);}
+window.addEventListener('resize',msu);
 /* „виж още“ се показва САМО ако текстът реално не се събира в трите реда */
 function ckm(){document.querySelectorAll('.page.on .clmp').forEach(function(p){
   var b=p.nextElementSibling;if(!b||!b.classList.contains('tmore'))return;
   if(p.classList.contains('open')){b.style.display='';return;}
-  b.style.display=(p.scrollHeight>p.clientHeight+2)?'':'none';});}
+  b.style.display=(p.scrollHeight>p.clientHeight+2)?'':'none';});
+  msu();}
 window.addEventListener('resize',ckm);
 function lbs(d){lb(CA,(CI+d+ALB[CA].length)%ALB[CA].length);}
 document.addEventListener('keydown',function(e){

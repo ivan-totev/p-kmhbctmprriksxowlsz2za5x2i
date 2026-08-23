@@ -52,6 +52,7 @@
   </div>
   <div class="lbcap" id="lbcap"></div>
 </div>
+<div id="msv" onclick="msc()">свий ▴</div>
 
 <script>var ALB={};
 var CA=0, CI=0, OPEN=null;
@@ -75,12 +76,30 @@ function sgd(s){var w=s.querySelector('.sg-card').offsetWidth+12;
   var i=Math.round(s.scrollLeft/w);var ds=s.parentNode.querySelectorAll('.sg-dots i');
   ds.forEach(function(e,j){e.className=(j===Math.min(i,ds.length-1))?'on':'';});}
 function txm(el){var p=el.previousElementSibling;p.classList.toggle('open');
-  el.textContent=p.classList.contains('open')?'свий ▴':'виж още ▾';}
+  var op=p.classList.contains('open');
+  el.textContent=op?'свий ▴':'виж още ▾';
+  var ev=el.closest('.ev');if(ev)ev.classList.toggle('wide',op);
+  if(!op){var a=ev||p.parentNode;var r=a.getBoundingClientRect();
+    if(r.top<0){a.scrollIntoView({block:'start'});window.scrollBy(0,-64);}}
+  msu();}
+/* плаващият „свий“ на телефон: вижда се само на тесен екран и само при разгънат текст */
+function msu(){var b=document.getElementById('msv');if(!b)return;
+  b.style.display=(window.innerWidth<=700&&document.querySelector('.clmp.open'))?'block':'none';}
+function msc(){var os=[].slice.call(document.querySelectorAll('.clmp.open'));if(!os.length)return;
+  var t=null,vh=window.innerHeight;
+  os.forEach(function(p){var r=p.getBoundingClientRect();if(!t&&r.top<vh&&r.bottom>0)t=p;});
+  t=t||os[os.length-1];
+  var b=t.nextElementSibling;
+  if(b&&b.classList.contains('tmore'))txm(b);
+  else{t.classList.remove('open');var e=t.closest('.ev');if(e)e.classList.remove('wide');msu();}
+  var a=t.closest('.ev')||t.parentNode;a.scrollIntoView({block:'start'});window.scrollBy(0,-64);}
+window.addEventListener('resize',msu);
 /* „виж още“ се показва САМО ако текстът реално не се събира в трите реда */
 function ckm(){document.querySelectorAll('.page.on .clmp').forEach(function(p){
   var b=p.nextElementSibling;if(!b||!b.classList.contains('tmore'))return;
   if(p.classList.contains('open')){b.style.display='';return;}
-  b.style.display=(p.scrollHeight>p.clientHeight+2)?'':'none';});}
+  b.style.display=(p.scrollHeight>p.clientHeight+2)?'':'none';});
+  msu();}
 window.addEventListener('resize',ckm);
 function lbs(d){lb(CA,(CI+d+ALB[CA].length)%ALB[CA].length);}
 document.addEventListener('keydown',function(e){

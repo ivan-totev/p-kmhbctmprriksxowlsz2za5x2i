@@ -163,6 +163,22 @@
   .cov.dk{height:112px;background:#241f1a;color:#e0a075;display:flex;align-items:center;justify-content:center;
     font-family:Verdana,sans-serif;font-size:11px;letter-spacing:.2em;text-align:center;line-height:1.8;}
   .evt{flex:1;min-width:0;}
+  /* „виж още“ разгънат: текстът на цялата ширина, медиите слизат отдолу (Иван, 22.08) */
+  .chron .ev.wide .evh{flex-direction:column;align-items:flex-start;}
+  .chron .ev.wide .evt{width:100%;}
+  .chron .ev.wide .cov{order:2;flex:0 0 auto;}
+  /* телефон: хрониката е една колона — текстът отгоре, медиите отдолу в пълна ширина */
+  @media(max-width:700px){
+    .chron .evh{flex-direction:column;align-items:stretch;gap:12px;}
+    .chron .evt{order:1;}
+    .chron .cov{order:2;flex:0 0 auto;width:100%;max-width:440px;}
+    .chron .cov img{width:100%;height:auto;max-height:58vw;}
+    .chron .cov.dk{width:auto;height:auto;min-height:64px;}
+  }
+  /* плаващият „свий“ (само телефон, само при разгънат текст — управлява го msu) */
+  #msv{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);display:none;
+    background:#241f1a;color:#f3ead9;font-family:Verdana,sans-serif;font-size:11px;letter-spacing:.16em;
+    padding:12px 26px;border-radius:999px;z-index:70;box-shadow:0 4px 16px rgba(16,12,8,.45);cursor:pointer;}
   .evd{font-family:Verdana,sans-serif;font-size:10.5px;letter-spacing:.16em;color:#6d635a;margin-bottom:4px;}
   .evt b{font-size:18.5px;line-height:1.25;display:block;}
   .evt p{font-size:14.5px;color:#554c42;margin-top:5px;line-height:1.5;}
