@@ -58,11 +58,19 @@ function sgm(el,d){var s=el.closest('.saga').querySelector('.sg-strip');
 function sgd(s){var w=s.querySelector('.sg-card').offsetWidth+12;
   var i=Math.round(s.scrollLeft/w);var ds=s.parentNode.querySelectorAll('.sg-dots i');
   ds.forEach(function(e,j){e.className=(j===Math.min(i,ds.length-1))?'on':'';});}
-function txm(el){var p=el.previousElementSibling;p.classList.toggle('open');
-  var op=p.classList.contains('open');
+function txm(el){var p=el.previousElementSibling;
+  var op=!p.classList.contains('open');
+  var kept=el.getBoundingClientRect().top;
+  /* акордеон: отварянето на един запис свива всички други (Иван, 23.08) */
+  if(op){document.querySelectorAll('.clmp.open').forEach(function(o){if(o===p)return;
+    o.classList.remove('open');
+    var e=o.closest('.ev');if(e)e.classList.remove('wide');
+    var b=o.nextElementSibling;if(b&&b.classList.contains('tmore'))b.textContent='виж още ▾';});}
+  p.classList.toggle('open',op);
   el.textContent=op?'свий ▴':'виж още ▾';
   var ev=el.closest('.ev');if(ev)ev.classList.toggle('wide',op);
-  if(!op){var a=ev||p.parentNode;var r=a.getBoundingClientRect();
+  if(op){window.scrollBy(0,el.getBoundingClientRect().top-kept);}
+  else{var a=ev||p.parentNode;var r=a.getBoundingClientRect();
     if(r.top<0){a.scrollIntoView({block:'start'});window.scrollBy(0,-64);}}
   msu();}
 /* плаващият „свий“ на телефон: вижда се само на тесен екран и само при разгънат текст */

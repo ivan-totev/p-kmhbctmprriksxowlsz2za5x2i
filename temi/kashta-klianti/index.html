@@ -30,9 +30,11 @@
 <div class="ev"><div class="evh" style="cursor:default">
   <div class="evt"><p style="margin-top:0;font-size:15.5px">Втората фаза — наша: художествената реставрация на стенописите и таваните (Карчески и Кривошиева), обзавеждането от фонда на „Старинен Пловдив“.</p></div>
 </div></div><div class="mon">22.06.2017</div>
-<div class="ev"><div class="evh" style="cursor:default">
+<div class="ev"><div class="evh" style="cursor:default"><div class="cov" style="cursor:pointer" onclick="lb(119,0)"><img data-m="klA0" alt=""><i>4 к. · виж</i></div>
   <div class="evt"><p style="margin-top:0;font-size:15.5px">Откриването: „Къща „Клианти“ е паметник от национално значение и истинска безценна ценност.“ Днес се влиза с калцуни — и си заслужава.</p></div>
-</div></div></div>
+</div><div class="galbar" onclick="tg(119)"><span>ГАЛЕРИЯ-АЛБУМ · ИЗТОЧНИК: личният архив — кадрите от откриването, добавени от теб</span><span class="arr" id="arr119">▾</span></div>
+<div class="evg" id="alb119"><div class="jgrid2"><div class="jcell" style="flex-grow:151;flex-basis:257px" onclick="lb(119,0)"><img data-m="klA0" style="aspect-ratio:1.5094" alt=""></div><div class="jcell" style="flex-grow:151;flex-basis:257px" onclick="lb(119,1)"><img data-m="klA1" style="aspect-ratio:1.5094" alt=""></div><div class="jcell" style="flex-grow:151;flex-basis:257px" onclick="lb(119,2)"><img data-m="klA2" style="aspect-ratio:1.5094" alt=""></div><div class="jcell" style="flex-grow:151;flex-basis:257px" onclick="lb(119,3)"><img data-m="klA3" style="aspect-ratio:1.5094" alt=""></div></div>
+  <div class="albnote">редактирай в Разкази-сайт — папката на записа</div></div></div></div>
   <p style="margin-top:26px;font-family:Verdana,sans-serif;font-size:11.5px;color:#6d635a;letter-spacing:.06em">ГОДИНИТЕ НА ТЕМАТА &nbsp; <a class="ytag" href="../../godini/2013/">2013</a> <a class="ytag" href="../../godini/2017/">2017</a></p>
   <div class="back"><a href="../../temi/stari-grad/">← обратно в разказа</a><span><a href="../../razkazi/" style="font-size:13px">начало</a></span></div>
 </div>
@@ -49,7 +51,7 @@
 </div>
 <div id="msv" onclick="msc()">свий ▴</div>
 
-<script>var ALB={};
+<script>var ALB={"119": [["klA0", "Къща „Клианти“ · 22.06.2017 · кадър 1"], ["klA1", "Къща „Клианти“ · 22.06.2017 · кадър 2"], ["klA2", "Къща „Клианти“ · 22.06.2017 · кадър 3"], ["klA3", "Къща „Клианти“ · 22.06.2017 · кадър 4"]]};
 var CA=0, CI=0, OPEN=null;
 function tg(a){
   var g=document.getElementById('alb'+a), r=document.getElementById('arr'+a);
@@ -70,11 +72,19 @@ function sgm(el,d){var s=el.closest('.saga').querySelector('.sg-strip');
 function sgd(s){var w=s.querySelector('.sg-card').offsetWidth+12;
   var i=Math.round(s.scrollLeft/w);var ds=s.parentNode.querySelectorAll('.sg-dots i');
   ds.forEach(function(e,j){e.className=(j===Math.min(i,ds.length-1))?'on':'';});}
-function txm(el){var p=el.previousElementSibling;p.classList.toggle('open');
-  var op=p.classList.contains('open');
+function txm(el){var p=el.previousElementSibling;
+  var op=!p.classList.contains('open');
+  var kept=el.getBoundingClientRect().top;
+  /* акордеон: отварянето на един запис свива всички други (Иван, 23.08) */
+  if(op){document.querySelectorAll('.clmp.open').forEach(function(o){if(o===p)return;
+    o.classList.remove('open');
+    var e=o.closest('.ev');if(e)e.classList.remove('wide');
+    var b=o.nextElementSibling;if(b&&b.classList.contains('tmore'))b.textContent='виж още ▾';});}
+  p.classList.toggle('open',op);
   el.textContent=op?'свий ▴':'виж още ▾';
   var ev=el.closest('.ev');if(ev)ev.classList.toggle('wide',op);
-  if(!op){var a=ev||p.parentNode;var r=a.getBoundingClientRect();
+  if(op){window.scrollBy(0,el.getBoundingClientRect().top-kept);}
+  else{var a=ev||p.parentNode;var r=a.getBoundingClientRect();
     if(r.top<0){a.scrollIntoView({block:'start'});window.scrollBy(0,-64);}}
   msu();}
 /* плаващият „свий“ на телефон: вижда се само на тесен екран и само при разгънат текст */
@@ -107,6 +117,6 @@ document.getElementById('lbx').addEventListener('touchend',function(e){
   if(dx>50)lbs(-1);else if(dx<-50)lbs(1);});
 document.getElementById('lbx').addEventListener('click',function(e){if(e.target.id==='lbx'||e.target.classList.contains('lbmain'))lbc();});
 </script>
-<script>var MEDIA={};document.querySelectorAll("[data-m]").forEach(function(e){e.src=MEDIA[e.getAttribute("data-m")];});document.querySelectorAll("[data-bg]").forEach(function(e){e.style.backgroundImage="url("+MEDIA[e.getAttribute("data-bg")]+")";});ckm();</script>
+<script>var MEDIA={"klA0": "../../media/temi/kashta-klianti/klA0.webp", "klA1": "../../media/temi/kashta-klianti/klA1.webp", "klA2": "../../media/temi/kashta-klianti/klA2.webp", "klA3": "../../media/temi/kashta-klianti/klA3.webp"};document.querySelectorAll("[data-m]").forEach(function(e){e.src=MEDIA[e.getAttribute("data-m")];});document.querySelectorAll("[data-bg]").forEach(function(e){e.style.backgroundImage="url("+MEDIA[e.getAttribute("data-bg")]+")";});ckm();</script>
 </body>
 </html>

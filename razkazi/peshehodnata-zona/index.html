@@ -28,7 +28,7 @@
   <span class="go"><a class="olink2" href="../../temi/glavnata/">Към темата →</a> &nbsp;·&nbsp; <a class="olink2 mut2" href="../../godini/2012/">2012</a> <a class="olink2 mut2" href="../../godini/2013/">2013</a> <a class="olink2 mut2" href="../../godini/2014/">2014</a> <a class="olink2 mut2" href="../../godini/2015/">2015</a> <a class="olink2 mut2" href="../../godini/2018/">2018</a></span></div></div><div class="orow" id="o-t2-1"><a class="oph" href="../../temi/ploshtad-centralen/" style="display:block"><img data-m="IzgrazdameplosadCentralenzasledvasite50godini" alt=""></a>
   <div class="otxt"><b><a class="olink" href="../../temi/ploshtad-centralen/">Площад „Централен“ — за следващите 50 години</a></b><p>2013–2019 · най-документираният обект: 4 508 кадъра в 110 папки. Отворен 05.09.2019.</p>
   <span class="go"><a class="olink2" href="../../temi/ploshtad-centralen/">Към темата →</a> &nbsp;·&nbsp; <a class="olink2 mut2" href="../../godini/2013/">2013</a> <a class="olink2 mut2" href="../../godini/2016/">2016</a> <a class="olink2 mut2" href="../../godini/2017/">2017</a> <a class="olink2 mut2" href="../../godini/2018/">2018</a> <a class="olink2 mut2" href="../../godini/2019/">2019</a></span></div></div><div class="orow" id="o-t2-2"><a class="oph" href="../../temi/apteka-marica/" style="display:block"><img data-m="apC0" alt=""></a>
-  <div class="otxt"><b><a class="olink" href="../../temi/apteka-marica/">Пред аптека „Марица“</a></b><p>2014 · участъкът до Пешеходния мост; пред аптеката — зеленина, пейки, площадка.</p>
+  <div class="otxt"><b><a class="olink" href="../../temi/apteka-marica/">Площада пред аптека „Марица“</a></b><p>2014 · участъкът до Пешеходния мост; пред аптеката — зеленина, пейки, площадка.</p>
   <span class="go"><a class="olink2" href="../../temi/apteka-marica/">Към темата →</a> &nbsp;·&nbsp; <a class="olink2 mut2" href="../../godini/2014/">2014</a></span></div></div><div class="orow" id="o-t2-3"><a class="oph" href="../../temi/podlezat-gladston/" style="display:block"></a>
   <div class="otxt"><b><a class="olink" href="../../temi/podlezat-gladston/">Подлезът на „Гладстон“</a></b><p>2013–2019 · тунелът под пощата, обновен из основи; отгоре — новото площадно пространство.</p>
   <span class="go"><a class="olink2" href="../../temi/podlezat-gladston/">Към темата →</a> &nbsp;·&nbsp; <a class="olink2 mut2" href="../../godini/2013/">2013</a> <a class="olink2 mut2" href="../../godini/2018/">2018</a> <a class="olink2 mut2" href="../../godini/2019/">2019</a></span></div></div>
@@ -72,11 +72,19 @@ function sgm(el,d){var s=el.closest('.saga').querySelector('.sg-strip');
 function sgd(s){var w=s.querySelector('.sg-card').offsetWidth+12;
   var i=Math.round(s.scrollLeft/w);var ds=s.parentNode.querySelectorAll('.sg-dots i');
   ds.forEach(function(e,j){e.className=(j===Math.min(i,ds.length-1))?'on':'';});}
-function txm(el){var p=el.previousElementSibling;p.classList.toggle('open');
-  var op=p.classList.contains('open');
+function txm(el){var p=el.previousElementSibling;
+  var op=!p.classList.contains('open');
+  var kept=el.getBoundingClientRect().top;
+  /* акордеон: отварянето на един запис свива всички други (Иван, 23.08) */
+  if(op){document.querySelectorAll('.clmp.open').forEach(function(o){if(o===p)return;
+    o.classList.remove('open');
+    var e=o.closest('.ev');if(e)e.classList.remove('wide');
+    var b=o.nextElementSibling;if(b&&b.classList.contains('tmore'))b.textContent='виж още ▾';});}
+  p.classList.toggle('open',op);
   el.textContent=op?'свий ▴':'виж още ▾';
   var ev=el.closest('.ev');if(ev)ev.classList.toggle('wide',op);
-  if(!op){var a=ev||p.parentNode;var r=a.getBoundingClientRect();
+  if(op){window.scrollBy(0,el.getBoundingClientRect().top-kept);}
+  else{var a=ev||p.parentNode;var r=a.getBoundingClientRect();
     if(r.top<0){a.scrollIntoView({block:'start'});window.scrollBy(0,-64);}}
   msu();}
 /* плаващият „свий“ на телефон: вижда се само на тесен екран и само при разгънат текст */
