@@ -103,6 +103,42 @@ function txm(el){var p=el.previousElementSibling;
   else{var a=ev||p.parentNode;var r=a.getBoundingClientRect();
     if(r.top<0){a.scrollIntoView({block:'start'});window.scrollBy(0,-64);}}
   msu();}
+/* сгъваемите месеци в хрониката на годината */
+function mhyd(m){
+  if(typeof MEDIA==='undefined')return;
+  [].forEach.call(m.querySelectorAll('[data-m]'),function(e){
+    var k=e.getAttribute('data-m');
+    if(MEDIA[k]){e.src=MEDIA[k];e.removeAttribute('data-m');}
+  });
+}
+function mtg(k){
+  var m=document.getElementById('mg_'+k); if(!m)return;
+  m.classList.toggle('on');
+  if(m.classList.contains('on'))mhyd(m);
+  var a=m.querySelector('.marr'); if(a)a.textContent=m.classList.contains('on')?'▾':'▸';
+}
+function mta(g){
+  var btn=document.getElementById('mall_'+g); if(!btn)return;
+  var open=btn.getAttribute('data-o')!=='1';
+  [].forEach.call(document.querySelectorAll('.mgrp[data-g="'+g+'"]'),function(m){
+    m.classList.toggle('on',open);
+    if(open)mhyd(m);
+    var a=m.querySelector('.marr'); if(a)a.textContent=open?'▾':'▸';
+  });
+  btn.setAttribute('data-o',open?'1':'0');
+  btn.textContent=open?'Събери записите':'Отвори всички записи';
+}
+function mgh(){
+  var h=location.hash.slice(1); if(!h)return;
+  var el=document.getElementById(h); if(!el)return;
+  var mg=el.closest('.mgrp');
+  if(mg&&!mg.classList.contains('on')){
+    mg.classList.add('on'); mhyd(mg);
+    var a=mg.querySelector('.marr'); if(a)a.textContent='▾';
+    el.scrollIntoView();
+  }
+}
+window.addEventListener('hashchange',mgh);
 /* плаващият „свий“ на телефон: вижда се само на тесен екран и само при разгънат текст */
 function msu(){var b=document.getElementById('msv');if(!b)return;
   b.style.display=(window.innerWidth<=700&&document.querySelector('.clmp.open'))?'block':'none';}
@@ -133,6 +169,6 @@ document.getElementById('lbx').addEventListener('touchend',function(e){
   if(dx>50)lbs(-1);else if(dx<-50)lbs(1);});
 document.getElementById('lbx').addEventListener('click',function(e){if(e.target.id==='lbx'||e.target.classList.contains('lbmain'))lbc();});
 </script>
-<script>var MEDIA={"nbA0": "../../media/temi/nebet/nbA0.webp", "nbA1": "../../media/temi/nebet/nbA1.webp", "nbA2": "../../media/temi/nebet/nbA2.webp", "nbA3": "../../media/temi/nebet/nbA3.webp", "nbA4": "../../media/temi/nebet/nbA4.webp", "nbB0": "../../media/temi/nebet/nbB0.webp", "nbB1": "../../media/temi/nebet/nbB1.webp", "nbB10": "../../media/temi/nebet/nbB10.webp", "nbB11": "../../media/temi/nebet/nbB11.webp", "nbB12": "../../media/temi/nebet/nbB12.webp", "nbB13": "../../media/temi/nebet/nbB13.webp", "nbB14": "../../media/temi/nebet/nbB14.webp", "nbB15": "../../media/temi/nebet/nbB15.webp", "nbB16": "../../media/temi/nebet/nbB16.webp", "nbB17": "../../media/temi/nebet/nbB17.webp", "nbB18": "../../media/temi/nebet/nbB18.webp", "nbB19": "../../media/temi/nebet/nbB19.webp", "nbB2": "../../media/temi/nebet/nbB2.webp", "nbB20": "../../media/temi/nebet/nbB20.webp", "nbB21": "../../media/temi/nebet/nbB21.webp", "nbB22": "../../media/temi/nebet/nbB22.webp", "nbB3": "../../media/temi/nebet/nbB3.webp", "nbB4": "../../media/temi/nebet/nbB4.webp", "nbB5": "../../media/temi/nebet/nbB5.webp", "nbB6": "../../media/temi/nebet/nbB6.webp", "nbB7": "../../media/temi/nebet/nbB7.webp", "nbB8": "../../media/temi/nebet/nbB8.webp", "nbB9": "../../media/temi/nebet/nbB9.webp", "nbC0": "../../media/temi/nebet/nbC0.webp", "nbC1": "../../media/temi/nebet/nbC1.webp", "nbC2": "../../media/temi/nebet/nbC2.webp", "nbC3": "../../media/temi/nebet/nbC3.webp", "nbC4": "../../media/temi/nebet/nbC4.webp", "nbC5": "../../media/temi/nebet/nbC5.webp", "nbC6": "../../media/temi/nebet/nbC6.webp", "nbD0": "../../media/temi/nebet/nbD0.webp", "nbE0": "../../media/temi/nebet/nbE0.webp", "nbE1": "../../media/temi/nebet/nbE1.webp", "nbE10": "../../media/temi/nebet/nbE10.webp", "nbE11": "../../media/temi/nebet/nbE11.webp", "nbE12": "../../media/temi/nebet/nbE12.webp", "nbE13": "../../media/temi/nebet/nbE13.webp", "nbE14": "../../media/temi/nebet/nbE14.webp", "nbE15": "../../media/temi/nebet/nbE15.webp", "nbE16": "../../media/temi/nebet/nbE16.webp", "nbE17": "../../media/temi/nebet/nbE17.webp", "nbE18": "../../media/temi/nebet/nbE18.webp", "nbE19": "../../media/temi/nebet/nbE19.webp", "nbE2": "../../media/temi/nebet/nbE2.webp", "nbE20": "../../media/temi/nebet/nbE20.webp", "nbE21": "../../media/temi/nebet/nbE21.webp", "nbE22": "../../media/temi/nebet/nbE22.webp", "nbE23": "../../media/temi/nebet/nbE23.webp", "nbE24": "../../media/temi/nebet/nbE24.webp", "nbE25": "../../media/temi/nebet/nbE25.webp", "nbE26": "../../media/temi/nebet/nbE26.webp", "nbE27": "../../media/temi/nebet/nbE27.webp", "nbE28": "../../media/temi/nebet/nbE28.webp", "nbE29": "../../media/temi/nebet/nbE29.webp", "nbE3": "../../media/temi/nebet/nbE3.webp", "nbE30": "../../media/temi/nebet/nbE30.webp", "nbE31": "../../media/temi/nebet/nbE31.webp", "nbE32": "../../media/temi/nebet/nbE32.webp", "nbE33": "../../media/temi/nebet/nbE33.webp", "nbE34": "../../media/temi/nebet/nbE34.webp", "nbE4": "../../media/temi/nebet/nbE4.webp", "nbE5": "../../media/temi/nebet/nbE5.webp", "nbE6": "../../media/temi/nebet/nbE6.webp", "nbE7": "../../media/temi/nebet/nbE7.webp", "nbE8": "../../media/temi/nebet/nbE8.webp", "nbE9": "../../media/temi/nebet/nbE9.webp", "vid_farkov": "../../media/temi/nebet/vid_farkov.mp4", "vid_nebet": "../../media/temi/nebet/vid_nebet.mp4"};document.querySelectorAll("[data-m]").forEach(function(e){e.src=MEDIA[e.getAttribute("data-m")];});document.querySelectorAll("[data-bg]").forEach(function(e){e.style.backgroundImage="url("+MEDIA[e.getAttribute("data-bg")]+")";});ckm();</script>
+<script>var MEDIA={"nbA0": "../../media/temi/nebet/nbA0.webp", "nbA1": "../../media/temi/nebet/nbA1.webp", "nbA2": "../../media/temi/nebet/nbA2.webp", "nbA3": "../../media/temi/nebet/nbA3.webp", "nbA4": "../../media/temi/nebet/nbA4.webp", "nbB0": "../../media/temi/nebet/nbB0.webp", "nbB1": "../../media/temi/nebet/nbB1.webp", "nbB10": "../../media/temi/nebet/nbB10.webp", "nbB11": "../../media/temi/nebet/nbB11.webp", "nbB12": "../../media/temi/nebet/nbB12.webp", "nbB13": "../../media/temi/nebet/nbB13.webp", "nbB14": "../../media/temi/nebet/nbB14.webp", "nbB15": "../../media/temi/nebet/nbB15.webp", "nbB16": "../../media/temi/nebet/nbB16.webp", "nbB17": "../../media/temi/nebet/nbB17.webp", "nbB18": "../../media/temi/nebet/nbB18.webp", "nbB19": "../../media/temi/nebet/nbB19.webp", "nbB2": "../../media/temi/nebet/nbB2.webp", "nbB20": "../../media/temi/nebet/nbB20.webp", "nbB21": "../../media/temi/nebet/nbB21.webp", "nbB22": "../../media/temi/nebet/nbB22.webp", "nbB3": "../../media/temi/nebet/nbB3.webp", "nbB4": "../../media/temi/nebet/nbB4.webp", "nbB5": "../../media/temi/nebet/nbB5.webp", "nbB6": "../../media/temi/nebet/nbB6.webp", "nbB7": "../../media/temi/nebet/nbB7.webp", "nbB8": "../../media/temi/nebet/nbB8.webp", "nbB9": "../../media/temi/nebet/nbB9.webp", "nbC0": "../../media/temi/nebet/nbC0.webp", "nbC1": "../../media/temi/nebet/nbC1.webp", "nbC2": "../../media/temi/nebet/nbC2.webp", "nbC3": "../../media/temi/nebet/nbC3.webp", "nbC4": "../../media/temi/nebet/nbC4.webp", "nbC5": "../../media/temi/nebet/nbC5.webp", "nbC6": "../../media/temi/nebet/nbC6.webp", "nbD0": "../../media/temi/nebet/nbD0.webp", "nbE0": "../../media/temi/nebet/nbE0.webp", "nbE1": "../../media/temi/nebet/nbE1.webp", "nbE10": "../../media/temi/nebet/nbE10.webp", "nbE11": "../../media/temi/nebet/nbE11.webp", "nbE12": "../../media/temi/nebet/nbE12.webp", "nbE13": "../../media/temi/nebet/nbE13.webp", "nbE14": "../../media/temi/nebet/nbE14.webp", "nbE15": "../../media/temi/nebet/nbE15.webp", "nbE16": "../../media/temi/nebet/nbE16.webp", "nbE17": "../../media/temi/nebet/nbE17.webp", "nbE18": "../../media/temi/nebet/nbE18.webp", "nbE19": "../../media/temi/nebet/nbE19.webp", "nbE2": "../../media/temi/nebet/nbE2.webp", "nbE20": "../../media/temi/nebet/nbE20.webp", "nbE21": "../../media/temi/nebet/nbE21.webp", "nbE22": "../../media/temi/nebet/nbE22.webp", "nbE23": "../../media/temi/nebet/nbE23.webp", "nbE24": "../../media/temi/nebet/nbE24.webp", "nbE25": "../../media/temi/nebet/nbE25.webp", "nbE26": "../../media/temi/nebet/nbE26.webp", "nbE27": "../../media/temi/nebet/nbE27.webp", "nbE28": "../../media/temi/nebet/nbE28.webp", "nbE29": "../../media/temi/nebet/nbE29.webp", "nbE3": "../../media/temi/nebet/nbE3.webp", "nbE30": "../../media/temi/nebet/nbE30.webp", "nbE31": "../../media/temi/nebet/nbE31.webp", "nbE32": "../../media/temi/nebet/nbE32.webp", "nbE33": "../../media/temi/nebet/nbE33.webp", "nbE34": "../../media/temi/nebet/nbE34.webp", "nbE4": "../../media/temi/nebet/nbE4.webp", "nbE5": "../../media/temi/nebet/nbE5.webp", "nbE6": "../../media/temi/nebet/nbE6.webp", "nbE7": "../../media/temi/nebet/nbE7.webp", "nbE8": "../../media/temi/nebet/nbE8.webp", "nbE9": "../../media/temi/nebet/nbE9.webp", "vid_farkov": "../../media/temi/nebet/vid_farkov.mp4", "vid_nebet": "../../media/temi/nebet/vid_nebet.mp4"};document.querySelectorAll("[data-m]").forEach(function(e){var g=e.closest(".mgrp");if(g&&!g.classList.contains("on"))return;e.src=MEDIA[e.getAttribute("data-m")];e.removeAttribute("data-m");});document.querySelectorAll("[data-bg]").forEach(function(e){e.style.backgroundImage="url("+MEDIA[e.getAttribute("data-bg")]+")";});if(typeof mgh==="function")mgh();ckm();</script>
 </body>
 </html>

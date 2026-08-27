@@ -82,6 +82,42 @@ function txm(el){var p=el.previousElementSibling;
   else{var a=ev||p.parentNode;var r=a.getBoundingClientRect();
     if(r.top<0){a.scrollIntoView({block:'start'});window.scrollBy(0,-64);}}
   msu();}
+/* сгъваемите месеци в хрониката на годината */
+function mhyd(m){
+  if(typeof MEDIA==='undefined')return;
+  [].forEach.call(m.querySelectorAll('[data-m]'),function(e){
+    var k=e.getAttribute('data-m');
+    if(MEDIA[k]){e.src=MEDIA[k];e.removeAttribute('data-m');}
+  });
+}
+function mtg(k){
+  var m=document.getElementById('mg_'+k); if(!m)return;
+  m.classList.toggle('on');
+  if(m.classList.contains('on'))mhyd(m);
+  var a=m.querySelector('.marr'); if(a)a.textContent=m.classList.contains('on')?'▾':'▸';
+}
+function mta(g){
+  var btn=document.getElementById('mall_'+g); if(!btn)return;
+  var open=btn.getAttribute('data-o')!=='1';
+  [].forEach.call(document.querySelectorAll('.mgrp[data-g="'+g+'"]'),function(m){
+    m.classList.toggle('on',open);
+    if(open)mhyd(m);
+    var a=m.querySelector('.marr'); if(a)a.textContent=open?'▾':'▸';
+  });
+  btn.setAttribute('data-o',open?'1':'0');
+  btn.textContent=open?'Събери записите':'Отвори всички записи';
+}
+function mgh(){
+  var h=location.hash.slice(1); if(!h)return;
+  var el=document.getElementById(h); if(!el)return;
+  var mg=el.closest('.mgrp');
+  if(mg&&!mg.classList.contains('on')){
+    mg.classList.add('on'); mhyd(mg);
+    var a=mg.querySelector('.marr'); if(a)a.textContent='▾';
+    el.scrollIntoView();
+  }
+}
+window.addEventListener('hashchange',mgh);
 /* плаващият „свий“ на телефон: вижда се само на тесен екран и само при разгънат текст */
 function msu(){var b=document.getElementById('msv');if(!b)return;
   b.style.display=(window.innerWidth<=700&&document.querySelector('.clmp.open'))?'block':'none';}
@@ -112,6 +148,6 @@ document.getElementById('lbx').addEventListener('touchend',function(e){
   if(dx>50)lbs(-1);else if(dx<-50)lbs(1);});
 document.getElementById('lbx').addEventListener('click',function(e){if(e.target.id==='lbx'||e.target.classList.contains('lbmain'))lbc();});
 </script>
-<script>var MEDIA={};document.querySelectorAll("[data-m]").forEach(function(e){e.src=MEDIA[e.getAttribute("data-m")];});document.querySelectorAll("[data-bg]").forEach(function(e){e.style.backgroundImage="url("+MEDIA[e.getAttribute("data-bg")]+")";});ckm();</script>
+<script>var MEDIA={};document.querySelectorAll("[data-m]").forEach(function(e){var g=e.closest(".mgrp");if(g&&!g.classList.contains("on"))return;e.src=MEDIA[e.getAttribute("data-m")];e.removeAttribute("data-m");});document.querySelectorAll("[data-bg]").forEach(function(e){e.style.backgroundImage="url("+MEDIA[e.getAttribute("data-bg")]+")";});if(typeof mgh==="function")mgh();ckm();</script>
 </body>
 </html>
