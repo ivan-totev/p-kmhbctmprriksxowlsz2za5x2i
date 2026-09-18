@@ -110,6 +110,12 @@ function sgm(el,d){var s=el.closest('.saga').querySelector('.sg-strip');
 function sgd(s){var w=s.querySelector('.sg-card').offsetWidth+12;
   var i=Math.round(s.scrollLeft/w);var ds=s.parentNode.querySelectorAll('.sg-dots i');
   ds.forEach(function(e,j){e.className=(j===Math.min(i,ds.length-1))?'on':'';});}
+/* (18.09) етикети за няколко видеа в един панел: показва избраното, спира другите */
+function vtb(el,i){var w=el.closest('.vtabs');
+  w.querySelectorAll('.vtb span').forEach(function(s,j){s.className=(j===i)?'on':'';});
+  w.querySelectorAll('.vtpi').forEach(function(p,j){
+    var v=p.querySelector('video'); if(v&&j!==i){try{v.pause();}catch(e){}}
+    p.className=(j===i)?'vtpi on':'vtpi';});}
 function txm(el){var p=el.previousElementSibling;
   var op=!p.classList.contains('open');
   var kept=el.getBoundingClientRect().top;
