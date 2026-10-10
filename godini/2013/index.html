@@ -19,7 +19,7 @@
   </div>
   <div class="yimg"><i>ГОДИШНАТА СНИМКА<br>подбира се</i></div>
 </div></div>
-<div class="yband"><div class="ytl"><a class="" href="../../godini/2009/">2009</a><a class="" href="../../godini/2010/">2010</a><a class="" href="../../godini/2011/">2011</a><a class="hit" href="../../godini/2012/">2012</a><a class="now" href="../../godini/2013/">2013</a><a class="hit" href="../../godini/2014/">2014</a><a class="hit" href="../../godini/2015/">2015</a><a class="hit" href="../../godini/2016/">2016</a><a class="" href="../../godini/2017/">2017</a><a class="" href="../../godini/2018/">2018</a><a class="" href="../../godini/2019/">2019</a></div></div>
+<div class="yband"><div class="ytl"><a class="" href="../../godini/2009/">2009</a><a class="" href="../../godini/2010/">2010</a><a class="" href="../../godini/2011/">2011</a><a class="hit" href="../../godini/2012/">2012</a><a class="now" href="../../godini/2013/">2013</a><a class="hit" href="../../godini/2014/">2014</a><a class="hit" href="../../godini/2015/">2015</a><a class="hit" href="../../godini/2016/">2016</a><a class="hit" href="../../godini/2017/">2017</a><a class="" href="../../godini/2018/">2018</a><a class="" href="../../godini/2019/">2019</a></div></div>
 <div class="wrap" style="padding-top:30px">
   <h2 class="sec">Трите акцента на годината · подбрани на ръка</h2>
   <div class="akrow"><div class="akc"><div class="akimg"><img data-m="y13ac03" alt=""></div>
@@ -2003,6 +2003,15 @@ function mhyd(m){
     if(MEDIA[k]){e.src=MEDIA[k];e.removeAttribute('data-m');}
   });
 }
+function dsct(i){var p=document.getElementById('d'+i),b=document.getElementById('dm'+i);if(!p||!b)return;var c=p.classList.toggle('clip');b.textContent=c?'виж още ▾':'свий ▴';}
+function kzgo(){
+  var h=location.hash; if(h.indexOf('#kz_')!==0)return;
+  var el=document.getElementById(h.slice(1)); if(!el)return;
+  var mg=el.closest('.mgrp');
+  if(mg&&!mg.classList.contains('on')){mg.classList.add('on');mhyd(mg);var a=mg.querySelector('.marr');if(a)a.textContent='▾';}
+  setTimeout(function(){el.scrollIntoView({behavior:'smooth',block:'center'});},60);
+}
+window.addEventListener('hashchange',kzgo);window.addEventListener('load',kzgo);
 function mtg(k){
   var m=document.getElementById('mg_'+k); if(!m)return;
   m.classList.toggle('on');
