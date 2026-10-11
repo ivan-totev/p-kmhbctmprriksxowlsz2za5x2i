@@ -23,9 +23,9 @@
 <div class="wrap" style="padding-top:30px">
   <h2 class="sec">Трите акцента на годината · подбрани на ръка</h2>
   <div class="akrow"><div class="akc"><div class="akimg ph"><i>СНИМКАТА НА АКЦЕНТА · подбира се</i></div>
-  <div class="aktxt"><b>Малката базилика — реставрацията започва</b><p>С „Америка за България“ — първата от двете базилики, върнати на града.</p><a class="olink2" href="../../temi/malka-bazilika/">подробностите — на мястото им →</a></div></div><div class="akc"><div class="akimg ph"><i>СНИМКАТА НА АКЦЕНТА · подбира се</i></div>
-  <div class="aktxt"><b>5 август — Ryanair и Фондът</b><p>На една пресконференция: договорът за Лондон и „Южната врата на България“. „Пътят беше дълъг и много трънлив.“</p><a class="olink2" href="../../temi/letishte-plovdiv/">подробностите — на мястото им →</a></div></div><div class="akc"><div class="akimg ph"><i>СНИМКАТА НА АКЦЕНТА · подбира се</i></div>
-  <div class="aktxt"><b>2 ноември — първият полет от Лондон</b><p>Първата целогодишна редовна международна линия в историята на летището каца в Крумово.</p><a class="olink2" href="../../temi/letishte-plovdiv/">подробностите — на мястото им →</a></div></div></div>
+  <div class="aktxt"><b>Малката базилика — реставрацията започва</b><p>С „Америка за България“ — първата от двете базилики, върнати на града.</p><a class="olink2" href="../../temi/malka-bazilika/">към разказа →</a></div></div><div class="akc"><div class="akimg ph"><i>СНИМКАТА НА АКЦЕНТА · подбира се</i></div>
+  <div class="aktxt"><b>5 август — Ryanair и Фондът</b><p>На една пресконференция: договорът за Лондон и „Южната врата на България“. „Пътят беше дълъг и много трънлив.“</p><a class="olink2" href="../../temi/letishte-plovdiv/">към разказа →</a></div></div><div class="akc"><div class="akimg ph"><i>СНИМКАТА НА АКЦЕНТА · подбира се</i></div>
+  <div class="aktxt"><b>2 ноември — първият полет от Лондон</b><p>Първата целогодишна редовна международна линия в историята на летището каца в Крумово.</p><a class="olink2" href="../../temi/letishte-plovdiv/">към разказа →</a></div></div></div>
   <h2 class="sec" style="margin-top:46px">Хрониката на годината · галериите, документите, видеата</h2>
   <div class="orow"><div class="otxt" style="padding:16px 20px"><p>[ Хрониката се пълни при подбора: галерии-събития
   (всяка е папка, в която се копират снимките), документите на годината, видеата. Разгънат пример — в 2015. ]</p></div></div>
@@ -52,6 +52,7 @@
   <div class="lbcap" id="lbcap"></div>
 </div>
 <div id="msv" onclick="msc()">свий ▴</div>
+<div id="mcl" onclick="mclc()">▴ прибери месеца</div>
 
 <script>var ALB={};
 var CA=0, CI=0, OPEN=null;
@@ -152,6 +153,21 @@ function msc(){var os=[].slice.call(document.querySelectorAll('.clmp.open'));if(
   else{t.classList.remove('open');var e=t.closest('.ev');if(e)e.classList.remove('wide');msu();}
   var a=t.closest('.ev')||t.parentNode;a.scrollIntoView({block:'start'});window.scrollBy(0,-64);}
 window.addEventListener('resize',msu);
+/* „прибери месеца“: активен е месецът, в който реално се намираш */
+function mcla(){
+  var os=document.querySelectorAll('.mgrp.on'),vh=window.innerHeight,act=null;
+  [].forEach.call(os,function(m){var r=m.getBoundingClientRect();
+    if(r.top<60&&r.bottom>Math.min(vh*0.6,420))act=m;});
+  return act;}
+function mclu(){var b=document.getElementById('mcl');if(!b)return;
+  b.style.display=mcla()?'block':'none';}
+function mclc(){var m=mcla();if(!m)return;
+  m.classList.remove('on');
+  var a=m.querySelector('.marr');if(a)a.textContent='▸';
+  var h=m.querySelector('.mh');(h||m).scrollIntoView({block:'start'});window.scrollBy(0,-66);
+  mclu();}
+window.addEventListener('scroll',function(){window.requestAnimationFrame(mclu);},{passive:true});
+window.addEventListener('resize',mclu);
 /* „виж още“ се показва САМО ако текстът реално не се събира в трите реда */
 function ckm(){document.querySelectorAll('.page.on .clmp').forEach(function(p){
   var b=p.nextElementSibling;if(!b||!b.classList.contains('tmore'))return;

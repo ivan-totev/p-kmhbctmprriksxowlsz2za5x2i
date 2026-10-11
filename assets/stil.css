@@ -140,6 +140,10 @@
     .akrow::-webkit-scrollbar{height:6px}
     .akrow::-webkit-scrollbar-thumb{background:#d9d0c0;border-radius:3px}
     .akc{flex:0 0 78%;min-width:78%;scroll-snap-align:start;}
+    .akimg{height:130px;}
+    .aktxt{padding:12px 14px 14px;gap:6px;}
+    .aktxt b{font-size:16px;}
+    .aktxt p{font-size:13.5px;line-height:1.45;}
   }
   .akimg{height:190px;overflow:hidden;}
   .akimg img{width:100%;height:100%;object-fit:cover;display:block;filter:sepia(.06);}
@@ -195,7 +199,7 @@
   .mtx2 b{font-size:16px;font-weight:normal;line-height:1.35;}
   .mtx2 .mgo{margin-top:7px;font-family:Verdana,sans-serif;font-size:12px;color:#a4502e;}
   .mgrp.on .mcard2{border-color:#a4502e;}
-  @media(max-width:760px){.yhero .wrap{flex-direction:column;align-items:stretch}.yimg{flex:none;width:100%}.mimg2{flex-basis:150px}.mimg2 .ml{font-size:15px}}
+  @media(max-width:760px){.yhero .wrap{flex-direction:column;align-items:stretch}.yhero{padding:16px 0 20px}.yhero h1{font-size:24px}.yhero h1 small{margin-bottom:6px}.yhero .ylede{font-size:14px;margin-top:8px;line-height:1.5}.yimg{flex:none;width:100%;height:140px}.mimg2{flex-basis:150px}.mimg2 .ml{font-size:15px}}
   .yfoot{background:#141110;color:#a89c8b;margin-top:46px;}
   .yfoot .in{max-width:1080px;margin:0 auto;padding:36px 28px 26px;display:flex;gap:44px;flex-wrap:wrap;}
   .yfoot h4{font-family:Verdana,sans-serif;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:#d98f5f;margin:0 0 12px;}
@@ -234,6 +238,10 @@
   #msv{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);display:none;
     background:#241f1a;color:#f3ead9;font-family:Verdana,sans-serif;font-size:11px;letter-spacing:.16em;
     padding:12px 26px;border-radius:999px;z-index:70;box-shadow:0 4px 16px rgba(16,12,8,.45);cursor:pointer;}
+  /* плаващият „прибери месеца“ — вижда се, щом си навътре в разгънат месец */
+  #mcl{position:fixed;right:14px;bottom:16px;display:none;
+    background:#a4502e;color:#f6ede0;font-family:Verdana,sans-serif;font-size:11px;letter-spacing:.14em;
+    padding:11px 18px;border-radius:999px;z-index:70;box-shadow:0 4px 16px rgba(16,12,8,.4);cursor:pointer;}
   .evd{font-family:Verdana,sans-serif;font-size:10.5px;letter-spacing:.16em;color:#6d635a;margin-bottom:4px;}
   .evt b{font-size:18.5px;line-height:1.25;display:block;}
   .evt p{font-size:14.5px;color:#554c42;margin-top:5px;line-height:1.5;}
