@@ -43,7 +43,7 @@
   <div class="otxt"><b><a class="olink" href="../godini/2017/">2017 — Пловдив пред света</a></b><p>Клианти отвори врати, мозайките на Пловдив стигнаха до ЮНЕСКО, булевард „Северен“ започна, а велоалеите свързаха града.</p>
   <span class="go"><a class="olink2" href="../godini/2017/">влез в годината →</a><span style="color:#6d635a;font-size:11px"> · 3 акцента · хрониката: 227 албума · документ · видео · 14 броя на вестника</span></span></div></div><div class="orow"><div class="oph"><img data-m="PriemanenasafetatazaEvropejskastolicanakulturata2019" alt=""><i>ИСТИНСКА СНИМКА</i></div>
   <div class="otxt"><b><a class="olink" href="../godini/2018/">2018 — Щафетата пристига</a></b><p>Матера предаде щафетата през ноември. Площадът и Бунарджика — в разгар на реконструкция.</p>
-  <span class="go"><a class="olink2" href="../godini/2018/">влез в годината →</a><span style="color:#6d635a;font-size:11px"> · 3 акцента · хрониката: 158 албума · документ · видео · 2 събития от вестника · 14 броя на вестника</span></span></div></div><div class="orow"><div class="oph"><img data-m="OtkrivanenaPlovdivEvropejskastolicanakulturata" alt=""><i>ИСТИНСКА СНИМКА</i></div>
+  <span class="go"><a class="olink2" href="../godini/2018/">влез в годината →</a><span style="color:#6d635a;font-size:11px"> · 3 акцента · хрониката: 176 албума · документ · видео · 1 събития от вестника · 14 броя на вестника</span></span></div></div><div class="orow"><div class="oph"><img data-m="OtkrivanenaPlovdivEvropejskastolicanakulturata" alt=""><i>ИСТИНСКА СНИМКА</i></div>
   <div class="otxt"><b><a class="olink" href="../godini/2019/">2019 — Годината на столицата</a></b><p>12 януари, мразовито и ветровито: 50 000 души дадоха началото. Останалото е история.</p>
   <span class="go"><a class="olink2" href="../godini/2019/">влез в годината →</a><span style="color:#6d635a;font-size:11px"> · 3 акцента · отчетът на годината · 2 събития от вестника · 8 броя на вестника</span></span></div></div>
   <div class="back"><a href="../">← начало</a><span><a href="../razkazi/" style="font-size:13px">към разказите →</a></span></div>
@@ -77,6 +77,12 @@ function lb(a,i){CA=a;CI=i;var it=ALB[a][i];
   document.getElementById('lbn').textContent=(i+1)+' / '+ALB[a].length+' · албумът';
   document.getElementById('lbx').classList.add('on');document.body.style.overflow='hidden';}
 function lbc(){document.getElementById('lbx').classList.remove('on');document.body.style.overflow='';}
+function baf(b){var w=b.closest('.bawrap'),on=!w.classList.contains('fs');w.classList.toggle('fs',on);
+  b.textContent=on?'✕ затвори':'⛶ цял екран';document.body.style.overflow=on?'hidden':'';
+  try{if(on&&document.documentElement.requestFullscreen&&!document.fullscreenElement)document.documentElement.requestFullscreen().catch(function(){});
+      else if(!on&&document.fullscreenElement)document.exitFullscreen();}catch(e){}}
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){var w=document.querySelector('.bawrap.fs');if(w)baf(w.querySelector('.bf'));}});
+document.addEventListener('fullscreenchange',function(){if(!document.fullscreenElement){var w=document.querySelector('.bawrap.fs');if(w)baf(w.querySelector('.bf'));}});
 /* Лентата на сагата: стрелки + точки-индикатор */
 function sgm(el,d){var s=el.closest('.saga').querySelector('.sg-strip');
   var w=s.querySelector('.sg-card').offsetWidth+12;s.scrollBy({left:d*w,behavior:'smooth'});}

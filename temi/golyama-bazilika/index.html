@@ -141,6 +141,12 @@ function lb(a,i){CA=a;CI=i;var it=ALB[a][i];
   document.getElementById('lbn').textContent=(i+1)+' / '+ALB[a].length+' · албумът';
   document.getElementById('lbx').classList.add('on');document.body.style.overflow='hidden';}
 function lbc(){document.getElementById('lbx').classList.remove('on');document.body.style.overflow='';}
+function baf(b){var w=b.closest('.bawrap'),on=!w.classList.contains('fs');w.classList.toggle('fs',on);
+  b.textContent=on?'✕ затвори':'⛶ цял екран';document.body.style.overflow=on?'hidden':'';
+  try{if(on&&document.documentElement.requestFullscreen&&!document.fullscreenElement)document.documentElement.requestFullscreen().catch(function(){});
+      else if(!on&&document.fullscreenElement)document.exitFullscreen();}catch(e){}}
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){var w=document.querySelector('.bawrap.fs');if(w)baf(w.querySelector('.bf'));}});
+document.addEventListener('fullscreenchange',function(){if(!document.fullscreenElement){var w=document.querySelector('.bawrap.fs');if(w)baf(w.querySelector('.bf'));}});
 /* Лентата на сагата: стрелки + точки-индикатор */
 function sgm(el,d){var s=el.closest('.saga').querySelector('.sg-strip');
   var w=s.querySelector('.sg-card').offsetWidth+12;s.scrollBy({left:d*w,behavior:'smooth'});}
