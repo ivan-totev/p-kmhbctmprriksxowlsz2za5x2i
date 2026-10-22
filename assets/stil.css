@@ -472,3 +472,5 @@
 @media(max-width:700px){.dsc.clip{-webkit-line-clamp:2}}
 .dmore{display:inline-block;margin-top:3px;margin-right:14px;font-size:12px;color:#a4502e;cursor:pointer;user-select:none}
 .dmore:hover{text-decoration:underline}
+.evtt{cursor:pointer}
+.evtt:hover{color:#a4502e}
