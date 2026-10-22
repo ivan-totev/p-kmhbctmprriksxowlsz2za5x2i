@@ -245,6 +245,7 @@
   .chron .ev.wide .evh{flex-direction:column;align-items:flex-start;}
   .chron .ev.wide .evt{width:100%;}
   .chron .ev.wide .cov{order:2;flex:0 0 auto;}
+  .evc{display:none;}
   /* телефон: хрониката е една колона — текстът отгоре, медиите отдолу в пълна ширина */
   @media(max-width:700px){
     .chron .evh{flex-direction:column;align-items:stretch;gap:12px;}
@@ -252,6 +253,9 @@
     .chron .cov{order:2;flex:0 0 auto;width:100%;max-width:440px;}
     .chron .cov img{width:100%;height:auto;max-height:58vw;}
     .chron .cov.dk{width:auto;height:auto;min-height:64px;}
+    /* (22.10) видеозаписите: плейърът слиза под заглавието, в пълна ширина */
+    .chron .evh>video,.chron .evh>.vtabs{order:2;width:100%!important;max-width:440px;flex:0 0 auto!important;}
+    .chron .evd .evc{display:inline;}
   }
   /* плаващият „свий“ (само телефон, само при разгънат текст — управлява го msu) */
   #msv{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);display:none;
@@ -465,5 +469,6 @@
   .cta{padding:80px 0;text-align:center;}#p-nachalo .cta h3{font-size:clamp(24px,3vw,32px);font-weight:normal;color:#f3ead9;}#p-nachalo .cta .btns{display:flex;gap:14px;justify-content:center;margin-top:26px;flex-wrap:wrap;}#p-nachalo .cta a{border:1px solid rgba(255,255,255,.4);color:#fff;text-decoration:none;padding:12px 26px;font-family:Verdana,sans-serif;font-size:13px;letter-spacing:.1em;}#p-nachalo .cta a.f{background:#a4502e;border-color:#a4502e;}@media(max-width:820px){#p-nachalo .topnav{padding:18px 20px;gap:14px;}#p-nachalo .mosaic{grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(4,1fr);}#p-nachalo .letter .grid{grid-template-columns:1fr;gap:34px;}#p-nachalo .letter .por{max-width:280px;}#p-nachalo .trow .th{display:none;}
   }
 .dsc.clip{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.dmore{display:inline-block;margin-top:3px;font-size:12px;color:#a4502e;cursor:pointer;user-select:none}
+@media(max-width:700px){.dsc.clip{-webkit-line-clamp:2}}
+.dmore{display:inline-block;margin-top:3px;margin-right:14px;font-size:12px;color:#a4502e;cursor:pointer;user-select:none}
 .dmore:hover{text-decoration:underline}
